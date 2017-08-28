@@ -1,8 +1,4 @@
-'use strict';
-
-import request from 'request';
-
-export default class RequestHelper {
+class RequestHelper {
   /**
    * Request Helper
    * @param {string} token - Your Private API Token
@@ -46,25 +42,16 @@ export default class RequestHelper {
    */
   submitRequest(options, callback) {
     let requestOptions = this.requestBuilder(options);
-    request(requestOptions, (err, response, body) => {
-      if ( err ) {
-        callback(err);
-      } else if ( !err && !this.isSuccessfulRequest(response.statusCode) ) {
-        callback(body);
-      } else {
-        callback(null, response, body);
-      }
-    });
-  }
 
-  /**
-   * Validate the Response Status Code
-   * @param {number} statusCode - The Status Code
-   * @returns {boolean}
-   */
-  isSuccessfulRequest(statusCode) {
-    const statusCodePattern = /^[2][0-9][0-9]$/;
-    return statusCodePattern.test(statusCode);
+    axios.request(requestOptions)
+      .then(function(response) {
+
+        if (response.status != 200) {
+          callback(null, response.status, null);
+        } else {
+          callback(null, response.status, response.data);
+        }
+      });
   }
 
   /**
@@ -75,9 +62,9 @@ export default class RequestHelper {
    */
   getAllPages(key, options, callback) {
     let items = [],
-        total = 0,
-        required = 0,
-        completed = 1;
+      total = 0,
+      required = 0,
+      completed = 1;
 
     options.qs.page = 1;
 
@@ -126,13 +113,14 @@ export default class RequestHelper {
    */
   requestBuilder(options) {
     return {
-      uri: this.apiUrl + options.actionPath,
+      baseURL: this.apiUrl,
+      url: options.actionPath,
       method: options.method || 'GET',
       headers: options.headers || this.headers,
-      body: options.body || {},
-      strictSSL: true,
-      json: true,
-      qs: options.qs || {}
+      withCredentials: false,
+      params: options.body || {},
+      responseType: 'json',
+      validateStatus: function (status) { return status >= 200 && status < 300;},
     };
   }
-}
+};
