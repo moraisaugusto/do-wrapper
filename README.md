@@ -31,6 +31,7 @@ Please raise an issue on GitHub with as much information as possible and the ste
 The MIT License (MIT)
 
 Copyright (c) 2016 Matt Major
+
 Changed (2017) by Augusto Morais
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
