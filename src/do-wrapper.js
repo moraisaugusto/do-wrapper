@@ -1,15 +1,11 @@
-'use strict';
-
-import RequestHelper from './request-helper';
-
-export default class DigitalOcean {
+class DigitalOcean {
   /**
    * Digital Ocean API Wrapper
    * @param {string} token - Your Private API Token
    * @param {number} size - Page Size of results to return
    * @constructor
    */
-  constructor(token, size) {
+  constructor(token, size = 25) {
     this.per_page = size;
     this.requestHelper = new RequestHelper(token);
   }
@@ -44,6 +40,7 @@ export default class DigitalOcean {
     };
     return this.requestHelper.request(options, callback);
   }
+
 
   /**
    * Get Action Information for Account
@@ -99,20 +96,20 @@ export default class DigitalOcean {
     return this.requestHelper.request(options, callback);
   }
 
-  /**
-   * Get an SSH Key via its Id
-   * Info: {@link https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-key retrieve-an-existing-key}
-   *
-   * @param {number} keyId - The Id of the Key
-   * @param {*} [callback] - Optional function to execute on completion
-   * @returns {Promise|undefined} - Returns a promise if callback is not defined
-   */
-  accountGetKeyById(keyId, callback) {
-    let options = {
-      actionPath: 'account/keys/' + encodeURIComponent(keyId)
-    };
-    return this.requestHelper.request(options, callback);
-  }
+     /**
+     * Get an SSH Key via its Id
+     * Info: {@link https://developers.digitalocean.com/documentation/v2/#retrieve-an-existing-key retrieve-an-existing-key}
+     *
+     * @param {number} keyId - The Id of the Key
+     * @param {*} [callback] - Optional function to execute on completion
+     * @returns {Promise|undefined} - Returns a promise if callback is not defined
+     */
+    accountGetKeyById(keyId, callback) {
+      let options = {
+        actionPath: 'account/keys/' + encodeURIComponent(keyId)
+      };
+      return this.requestHelper.request(options, callback);
+    }
 
   /**
    * Get an SSH Key via its Fingerprint
@@ -149,7 +146,7 @@ export default class DigitalOcean {
     return this.requestHelper.request(options, callback);
   }
 
-  /**
+   /**
    * Delete a SSH Key
    * Info: {@link https://developers.digitalocean.com/documentation/v2/#destroy-a-key destroy-a-key}
    *
@@ -233,6 +230,7 @@ export default class DigitalOcean {
     return this.requestHelper.request(options, callback);
   }
 
+
   /**
    * Get a list of Backups for a Droplet
    * Info: {@link https://developers.digitalocean.com/documentation/v2/#list-backups-for-a-droplet list-backups-for-a-droplet}
@@ -255,6 +253,7 @@ export default class DigitalOcean {
     };
     return this.requestHelper.request(options, callback);
   }
+
 
   /**
    * Get a list of Actions for a Droplet
@@ -1203,4 +1202,5 @@ export default class DigitalOcean {
     };
     return this.requestHelper.request(options, callback);
   }
+
 }

@@ -12,7 +12,6 @@
   "types": "./types/do-wrapper.d.ts",
   "scripts": {
     "build": "gulp compile && npm run doc",
-    "precommit": "npm t",
     "test": "jshint src/*.js && ./node_modules/mocha/bin/mocha",
     "doc": "./node_modules/.bin/jsdoc src/*.js -d docs/"
   },
