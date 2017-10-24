@@ -1,23 +1,27 @@
 {
   "name": "do-wrapper",
-  "version": "3.11.1",
-  "description": "Node.js Wrapper for Digital Ocean API v2",
-  "author": "Matt Major",
-  "homepage": "https://github.com/matt-major/do-wrapper",
+  "version": "3.11.2",
+  "description": "Javascript Wrapper for Digital Ocean API v2",
+  "author": "Augusto Morais",
+  "homepage": "https://github.com/moraisaugusto/do-wrapper",
   "repository": {
     "type": "git",
-    "url": "https://github.com/matt-major/do-wrapper.git"
+    "url": "https://github.com/moraisaugusto/do-wrapper.git"
   },
   "main": "./dist/do-wrapper.js",
   "types": "./types/do-wrapper.d.ts",
   "scripts": {
     "build": "gulp compile && npm run doc",
+<<<<<<< HEAD
+=======
+    "//precommit": "npm t",
+>>>>>>> a93bfcd4dfa234a16c0e945841fd5bd5d00473dc
     "test": "jshint src/*.js && ./node_modules/mocha/bin/mocha",
     "doc": "./node_modules/.bin/jsdoc src/*.js -d docs/"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matt-major/do-wrapper/issues"
+    "url": "https://github.com/moraisaugusto/do-wrapper/issues"
   },
   "keywords": [
     "digital ocean",
@@ -33,6 +37,7 @@
     "request": "2.74.0"
   },
   "devDependencies": {
+    "axios": "^0.16.2",
     "chai": "^3.5.0",
     "gulp": "3.9.1",
     "gulp-babel": "5.2.1",

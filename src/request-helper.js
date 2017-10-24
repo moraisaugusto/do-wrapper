@@ -122,6 +122,10 @@ class RequestHelper {
       params: options.body || {},
       responseType: 'json',
       validateStatus: function (status) { return status >= 200 && status < 300;},
+<<<<<<< HEAD
     }
+=======
+    };
+>>>>>>> a93bfcd4dfa234a16c0e945841fd5bd5d00473dc
   }
 };
